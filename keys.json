@@ -1,3 +1,11 @@
 {
-  "wco_key": "51wJ0FDq/UVCefLopEcmK3ni4WIQztMjZdSYOsbHr9R2h7PvxBGAuglaN8+kXT6y"
+	"wco_key": "51wJ0FDq/UVCefLopEcmK3ni4WIQztMjZdSYOsbHr9R2h7PvxBGAuglaN8+kXT6y",
+	"gogoplay1": {
+		"key": "54674138327930866480207815084989",
+		"iv": "3134003223491201"
+	},
+	"asianLoad": {
+		"key": "93422192433952489752342908585752",
+		"iv": "9262859232435825"
+	}
 }

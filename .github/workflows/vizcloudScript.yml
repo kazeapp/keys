@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lmao:
+  Vizcloud:
     runs-on: ubuntu-latest
     environment: Vizcloud
     steps:

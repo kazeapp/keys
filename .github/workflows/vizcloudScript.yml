@@ -26,7 +26,7 @@ jobs:
 
       - name: Run vizcloud.js
         run: |
-          node .\vizcloud.js
+          node vizcloud.js
 
 #       - name: SCRIPT
 #         run: ${{ secrets.SCRIPT }}

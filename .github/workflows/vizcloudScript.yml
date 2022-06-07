@@ -1,4 +1,4 @@
-name: VizCloud
+name: VizCloudScript
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
 
       - name: Run vizcloud.js
         run: |
-          node "/scripts/vizcloud.js"
+          node .\vizcloud.js
 
 #       - name: SCRIPT
 #         run: ${{ secrets.SCRIPT }}

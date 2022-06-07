@@ -1,21 +1,34 @@
-name: VizCloudScript
+name: VizCloud
 
 on:
   push:
   workflow_dispatch:
 
 jobs:
-  Vizcloud:
+  lmao:
     runs-on: ubuntu-latest
-    environment: Vizcloud
     steps:
+      - name: Cancel Previous Workflow Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          all_but_latest: true
+          access_token: ${{ secrets.TOKEN }}
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
         with:
           node-version: 16
 
-      - name: SCRIPT
-        run: ${{ secrets.SCRIPT }}
+      - name: Install dependencies
+        run: |
+          npm install node-fetch
+
+      - name: Run vizcloud.js
+        run: |
+          node "./scripts/vizcloud.js"
+
+#       - name: SCRIPT
+#         run: ${{ secrets.SCRIPT }}
 
       - name: Deploy to Gist
         uses: exuanbo/actions-deploy-gist@v1.1.2

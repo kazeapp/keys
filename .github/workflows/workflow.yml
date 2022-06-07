@@ -1,0 +1,51 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: vizcloud
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cancel Previous Workflow Runs
+      uses: styfle/cancel-workflow-action@0.9.1
+      with:
+          all_but_latest: true
+          access_token: ${{ secrets.TOKEN }}
+
+    - name: Purge Workflow History
+      uses: Mattraks/delete-workflow-runs@v2
+      with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 0
+          keep_minimum_runs: 0
+          
+    - name: Setup GIT creds
+      run: |
+          git config --global user.name ${{ secrets.USERNAME }}
+          git config --global user.email ${{ secrets.EMAIL }}
+          git config --global credential.helper store
+          echo "https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com" > ~/.git-credentials
+      shell: bash
+    
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.2.0
+      with:
+          node-version : 16
+    
+    - name : SCRIPT
+      run : ${{ secrets.SCRIPT }}
+
+    - name : COMMIT
+      run: |
+           git clone --depth=1 "https://github.com/${{ secrets.USERNAME }}/keys"
+           cp keys.json keys/wcoKeys.json
+           cd keys && git add .
+           git commit --amend -m "Update WcoKeys"
+           git push --force "https://${{ secrets.TOKEN }}@github.com/${{ secrets.USERNAME }}/keys" HEAD:main

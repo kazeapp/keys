@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: Vizcloud
     steps:
-      - name: Cancel Previous Workflow Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          all_but_latest: true
-          access_token: ${{ secrets.TOKEN }}
+#       - name: Cancel Previous Workflow Runs
+#         uses: styfle/cancel-workflow-action@0.9.1
+#         with:
+#           all_but_latest: true
+#           access_token: ${{ secrets.TOKEN }}
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.2.0
